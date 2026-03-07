@@ -2,21 +2,27 @@
 
 namespace encurtador\models;
 
+use encurtador\config\Database;
+
 class Encurtador {
 
-    private string $table = "encurtador";
+    private string $table = "urls";
+
     public string $siteEncurtado;
+    private $db;
 
-    public function __construct(
-        public string $siteOriginal,
-        public int $acessos = 0
-    )
-    {}
+    public string $siteOriginal;
+    public int $acessos = 0;
 
-    public function encurtarLink(){
-        $site = "encurtador/";
+    public function __construct(){
+        $this->db = Database::getConnection();
+    }
+
+    public function encurtarLink($siteOriginal){
+        $this->siteOriginal = $siteOriginal;
+
         $codigo = $this->gerarCodigo();
-        $this->siteEncurtado = $site . $codigo;
+        return $siteEncurtado = "encurtador/" . $codigo;
     }
 
     private function gerarCodigo($tamanhoCodigo = 6):string {
@@ -29,6 +35,13 @@ class Encurtador {
 
         return $codigo;
     }
+
+    public function getAll() {
+        $stmt = $this->db->query("SELECT * FROM $this->table where ativo = 1");
+        return $stmt->fetchAll();
+    }
+
+
 
 
 }

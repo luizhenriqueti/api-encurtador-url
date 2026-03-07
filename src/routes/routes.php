@@ -19,12 +19,22 @@ $app->post('/encurtar-link', function(Request $request, Response $response){
 
     $siteOriginal = $data['link'];
 
-    $controller = new EncurtadorController($siteOriginal);
+    $controller = new EncurtadorController();
 
-    $resultado = $controller->encurtarLink();
+    $resultado = $controller->encurtarLink($siteOriginal);
 
     $response->getBody()->write(json_encode($resultado));
 
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+$app->get('/todas-urls', function(Request $req, Response $res){
+    $controller = new EncurtadorController();
+    $resultado = $controller->getAll();
+
+    $res->getBody()->write(json_encode($resultado));
+    return $res
+        ->withHeader('Content-type', 'application/json')
+        ->withStatus(200);
+
+});

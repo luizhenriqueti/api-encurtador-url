@@ -6,17 +6,16 @@ use encurtador\models\Encurtador;
 
 class EncurtadorController{
 
-    public function __construct(
-        public string $siteOriginal
-    )
-    {}
 
-    public function encurtarLink(){        
-        $ModelEncurtador = new Encurtador($this->siteOriginal);
-        $ModelEncurtador->encurtarLink();
 
-        return $ModelEncurtador->siteEncurtado;
+    public function encurtarLink($siteOriginal){        
+        $encurtador = new Encurtador();
+        return $resultado = $encurtador->encurtarLink($siteOriginal);
+    }
 
+    public function getAll(){
+        $encurtador = new Encurtador();
+        return $resultado = $encurtador->getAll();
     }
 
 
