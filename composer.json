@@ -1,0 +1,17 @@
+{
+    "name": "luizh/api_encurtador_url",
+    "autoload": {
+        "psr-4": {
+            "encurtador\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "luiz rosa"
+        }
+    ],
+    "require": {
+        "slim/slim": "^4.15",
+        "slim/psr7": "^1.8"
+    }
+}
