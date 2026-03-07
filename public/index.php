@@ -1,18 +1,11 @@
 <?php
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\Factory\AppFactory;
 
-use encurtador\controller\HomeController;
+use Slim\Factory\AppFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
 
 $app = AppFactory::create();
 
-$app->get('/', function (Request $request, Response $response, $args) {
-    $HomeController = new HomeController();
-    $response->getBody()->write($HomeController->home());
-    return $response;
-});
+require __DIR__ . '/../src/routes/routes.php';
 
 $app->run();
