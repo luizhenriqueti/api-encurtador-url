@@ -18,6 +18,15 @@ class EncurtadorController{
         return $resultado = $encurtador->getAll();
     }
 
+    public function salvar($siteOriginal) {
+
+        $encurtador = new Encurtador();
+
+        $siteEncurtado = $encurtador->encurtarLink($siteOriginal);
+
+        return $encurtador->salvar($siteOriginal, $siteEncurtado);
+    }
+
 
 }
 ?>

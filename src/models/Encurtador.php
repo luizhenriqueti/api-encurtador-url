@@ -41,6 +41,24 @@ class Encurtador {
         return $stmt->fetchAll();
     }
 
+    public function salvar($site, $siteEncurtado){
+        $stmt = $this->db->prepare("
+            INSERT INTO urls (url_original, url_encurtada, total_acessos, ativo)
+            VALUES (:site, :siteEncurtado, 0, 1)
+        ");
+
+
+        $resultado = $stmt->execute([
+            'site'=>$site, 'siteEncurtado'=>$siteEncurtado
+        ]);
+
+        if ($resultado) {
+            return "sucesso";
+        }else{
+            return "falha";
+        }
+    }
+
 
 
 

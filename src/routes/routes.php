@@ -38,3 +38,20 @@ $app->get('/todas-urls', function(Request $req, Response $res){
         ->withStatus(200);
 
 });
+
+$app->post('/salvar-url', function(Request $req, Response $res){
+    
+    $data = json_decode($req->getBody()->getContents(), true);
+
+    $siteOriginal = $data['link'];
+
+    $controller = new EncurtadorController();
+
+    $resultado = $controller->salvar($siteOriginal);
+    
+    $res->getBody()->write(json_encode($resultado));
+
+    return $res
+        ->withHeader('Content-type', 'application/json')
+        ->withStatus(200);
+});
